@@ -18,11 +18,16 @@ bot = TelegramClient(session=config.session_name, api_id=config.api_id, api_hash
 
 
 @bot.on(events.NewMessage(pattern='/start'))
-@bot.on(events.NewMessage(pattern='/test'))
 async def start(event):
-    await event.respond('Hi!')
+    await event.respond(bot.get_me())
     raise events.StopPropagation
 
+
+@bot.on(events.NewMessage(pattern='/add_employee', from_users=config.admin_list))
+async def add_employee(event):
+    # TODO number, name
+    await event.respond(bot.get_me())
+    raise events.StopPropagation
 
 # Connect to Telegram and run in a loop
 bot.start(bot_token=config.bot_token)
