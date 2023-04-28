@@ -19,7 +19,7 @@ bot = TelegramClient(session=config.session_name, api_id=config.api_id, api_hash
 
 @bot.on(events.NewMessage(pattern='/start'))
 async def start(event):
-    await event.respond(bot.get_me())
+    await event.respond(event)
     raise events.StopPropagation
 
 
