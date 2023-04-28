@@ -26,7 +26,7 @@ async def start(event):
 @bot.on(events.NewMessage(pattern='/add_employee', from_users=config.admin_list))
 async def add_employee(event):
     # TODO number, name
-    await event.respond(bot.get_me())
+    await event.respond(event)
     raise events.StopPropagation
 
 # Connect to Telegram and run in a loop
