@@ -1,0 +1,62 @@
+msgid "start_welcome"
+msgstr "خوش آمدید"
+
+msgid "start_id"
+msgstr "آیدی عددی شما"
+
+msgid "start_keyboard_admin_employees"
+msgstr "مدیریت کارمندان"
+
+msgid "start_keyboard_admin_tasks"
+msgstr "مدیریت فعالیت ها"
+
+msgid "admin_employees_keyboard_add_employee"
+msgstr "افزودن کارمند"
+
+msgid "admin_employees_keyboard_edit_employee"
+msgstr "ویرایش کارمند"
+
+msgid "admin_employees_keyboard_delete_employee"
+msgstr "حذف کارمند"
+
+msgid "enter_employee_name"
+msgstr "نام کارمند را وارد کنید"
+
+msgid "enter_employee_number"
+msgstr "شماره ی کارمند را وارد کنید"
+
+msgid "employee_saved"
+msgstr "کارمند ذخیره شد"
+
+msgid "employee_deleted"
+msgstr "کارمند حذف شد"
+
+msgid "enter_task_title"
+msgstr "عنوان فعالیت را وارد کنید"
+
+msgid "enter_task_description"
+msgstr "توضیحات فعالیت را وارد کنید"
+
+msgid "enter_task_start_date"
+msgstr "تاریخ شروع فعالیت را وارد کنید"
+
+msgid "enter_task_deadline"
+msgstr "تاریخ اتمام فعالیت را وارد کنید"
+
+msgid "task_saved"
+msgstr "فعالیت ذخیره شد"
+
+msgid "new_task"
+msgstr "فعالیت جدید"
+
+msgid "main_menu"
+msgstr "منوی اصلی"
+
+msgid "select_employee"
+msgstr "کارمندی را انتخاب کنید"
+
+msgid "share_phone_number"
+msgstr "به اشتراک گذاشتن شماره"
+
+msgid ""
+msgstr ""

@@ -1,3 +1,5 @@
 /venv/
 /config_dev.py
 /config_live.py
+/bot_dev.session
+/bot_dev.session-journal
