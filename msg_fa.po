@@ -11,7 +11,7 @@ msgid "start_keyboard_admin_tasks"
 msgstr "مدیریت فعالیت ها"
 
 msgid "admin_employees_keyboard_add_employee"
-msgstr "افزودن کارمند"
+msgstr "کارمند جدید"
 
 msgid "admin_employees_keyboard_edit_employee"
 msgstr "ویرایش کارمند"
@@ -30,6 +30,9 @@ msgstr "کارمند ذخیره شد"
 
 msgid "employee_deleted"
 msgstr "کارمند حذف شد"
+
+msgid "task_deleted"
+msgstr "فعالیت حذف شد"
 
 msgid "enter_task_title"
 msgstr "عنوان فعالیت را وارد کنید"
@@ -55,8 +58,38 @@ msgstr "منوی اصلی"
 msgid "select_employee"
 msgstr "کارمندی را انتخاب کنید"
 
+msgid "select_task"
+msgstr "فعالیتی را انتخاب کنید"
+
+msgid "admin_tasks_keyboard_edit_task"
+msgstr "ویرایش فعالیت"
+
+msgid "admin_tasks_keyboard_delete_task"
+msgstr "حذف فعالیت"
+
 msgid "share_phone_number"
 msgstr "به اشتراک گذاشتن شماره"
+
+msgid "ignore_entry"
+msgstr "اگر نمی خواهید تغییری ایجاد شود، یک نقطه (.) بگذارید"
+
+msgid "next"
+msgstr "بعدی"
+
+msgid "previous"
+msgstr "قبلی"
+
+msgid "last"
+msgstr "آخرین"
+
+msgid "first"
+msgstr "اولین"
+
+msgid "from"
+msgstr "از"
+
+msgid "select_operators"
+msgstr "افراد مرتبط با فعالیت را انتخاب کنید"
 
 msgid ""
 msgstr ""

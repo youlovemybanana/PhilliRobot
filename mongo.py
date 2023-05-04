@@ -11,13 +11,14 @@ class Mongo:
 
     def insert(self, collection, data):
         if type(data) == list:
-            self.db[collection].insert_many(data)
+            return self.db[collection].insert_many(data)
         elif type(data) == dict:
-            self.db[collection].insert_one(data)
+            return self.db[collection].insert_one(data)
         else:
-            raise Exception
+            return None
 
     def find(self, collection, query=None, page=1, sort_by='_id', sort_order='desc'):
+        page = int(page)
         return self.db[collection]\
                    .find(query if query else {})\
                    .sort(sort_by, 1 if sort_order == 'desc' else -1)\
