@@ -18,3 +18,7 @@ db_name = 'bot_test'
 
 # localization
 language = 'fa'
+
+# module
+module_employee = True
+module_task = True  # depends on employee

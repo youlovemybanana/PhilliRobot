@@ -38,7 +38,8 @@ task = {
             'charge': 0
         }
     ],
-    'status': ''
+    'status': '',
+    'creator': 0
 }
 db.employee.create_index([('name', 'text')])
 db.task.create_index([('title', 'text'), ('description', 'text')])

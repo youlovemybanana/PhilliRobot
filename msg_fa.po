@@ -11,7 +11,7 @@ msgid "start_keyboard_admin_tasks"
 msgstr "مدیریت فعالیت ها"
 
 msgid "admin_employees_keyboard_add_employee"
-msgstr "کارمند جدید"
+msgstr "افزودن کارمند جدید"
 
 msgid "admin_employees_keyboard_edit_employee"
 msgstr "ویرایش کارمند"
@@ -50,7 +50,7 @@ msgid "task_saved"
 msgstr "فعالیت ذخیره شد"
 
 msgid "new_task"
-msgstr "فعالیت جدید"
+msgstr "ایجاد فعالیت جدید"
 
 msgid "main_menu"
 msgstr "منوی اصلی"
@@ -90,6 +90,60 @@ msgstr "از"
 
 msgid "select_operators"
 msgstr "افراد مرتبط با فعالیت را انتخاب کنید"
+
+msgid "account_auth_successful"
+msgstr "حساب کاربری شما با موفقیت احراز هویت شد"
+
+msgid "account_auth_failed"
+msgstr "حساب کاربری شما اجازه ی استفاده از ربات را ندارد"
+
+msgid "task_assigned"
+msgstr "شما مسئول فعالیت شدید"
+
+msgid "task_unassigned"
+msgstr "در فعالیت از شما سلب مسئولیت شد"
+
+msgid "operators"
+msgstr "مسئولان"
+
+msgid "new_tasks"
+msgstr "لیست فعالیت های جدید"
+
+msgid "in_progress_tasks"
+msgstr "لیست فعالیت های در حال انجام"
+
+msgid "waiting_for_payment_tasks"
+msgstr "لیست فعالیت های در انتظار تسویه حساب"
+
+msgid "paid_off_tasks"
+msgstr "لیست فعالیت های تسویه حساب شده"
+
+msgid "task_marked_in_progress"
+msgstr "فعالیت در حال انجام اعلام شد"
+
+msgid "task_marked_waiting_for_payment"
+msgstr "فعالیت در انتظار تسویه حساب اعلام شد"
+
+msgid "task_marked_paid_off"
+msgstr "فعالیت تسویه حساب شد"
+
+msgid "enter_task_comment"
+msgstr "اگر توضیحی نیاز است بنویسید در غیر این صورت نقطه (.) بگذارید"
+
+msgid "enter_task_payment_offer"
+msgstr "مبلغ پیشنهادی این فعالیت را به تومان اعلام کنید"
+
+msgid "keyboard_mark_ip"
+msgstr "تغییر وضعیت به در حال انجام"
+
+msgid "keyboard_mark_wfp"
+msgstr "تغییر وضعیت به در انتظار تسویه حساب"
+
+msgid "keyboard_mark_po"
+msgstr "تغییر وضعیت به تسویه حساب شده"
+
+msgid "you_can_only_edit_new_tasks"
+msgstr "فقط فعالیت های جدید توسط شما قابل ویرایش هستند"
 
 msgid ""
 msgstr ""

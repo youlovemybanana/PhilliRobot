@@ -21,7 +21,7 @@ class Mongo:
         page = int(page)
         return self.db[collection]\
                    .find(query if query else {})\
-                   .sort(sort_by, 1 if sort_order == 'desc' else -1)\
+                   .sort(sort_by, -1 if sort_order == 'desc' else 1)\
                    .skip((page-1)*self.per_page)\
                    .limit(self.per_page)
 
@@ -32,7 +32,7 @@ class Mongo:
         return int(self.count(collection, query)/self.per_page)+1
 
     def update(self, collection, query, update):
-        self.db[collection].update_many(query, update)
+        return self.db[collection].update_many(query, update)
 
     def delete(self, collection, query):
         self.db[collection].delete_many(query)
