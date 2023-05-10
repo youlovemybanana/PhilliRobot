@@ -23,3 +23,6 @@ language = 'fa'
 module_employee = True
 module_task = True  # depends on employee
 module_reminder = True  # depends on task
+
+# module_reminder
+reminder_groups = [0]  # ADD_GROUP_IDS

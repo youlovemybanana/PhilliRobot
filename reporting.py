@@ -13,7 +13,6 @@ def welcome_admin(db, msg, config):
 
 
 def welcome_employee(msg, config, employee):
-    # TODO report tasks
     welcome_msg = f"{employee.get('name')}, {msg.get('start_welcome')}!\n\n"
     welcome_msg += f"{today(msg)}\n\n"
     return welcome_msg
@@ -41,4 +40,13 @@ def admin_overall_task_report(db, msg):
            f"{msg.get('count_wfp_task')}: {count_wfp_task}\n" \
            f"{msg.get('count_po_task')}: {count_po_task}"
 
+
+def report_today(db, msg, config):
+    if config.module_task:
+        today_date = datetime.today().replace(minute=0, hour=0, second=0, microsecond=0)
+        tasks = db.find('task', {'start_date': today_date})
+        task_reminder = f"{today(msg)}\n\n" \
+                        f"{msg.get('tasks_today')}:\n\n"
+        for task in tasks:
+            task_reminder += f"🔸 {task.get('title')}\n\n"
 
