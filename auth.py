@@ -1,4 +1,20 @@
 from functools import wraps
+from persian_calendar import Persian, Gregorian
+from datetime import datetime
+
+
+def persian_str_to_gregorian_date(d: str):
+    try:
+        return Persian(d).gregorian_datetime()
+    except:
+        return None
+
+
+def gregorian_date_to_persian_str(d: datetime):
+    try:
+        return Gregorian(d.date()).persian_string('{}/{}/{}')
+    except:
+        return None
 
 
 def phone_number(n: str):  # TODO make sure no phone duplicates exist

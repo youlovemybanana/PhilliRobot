@@ -2,7 +2,7 @@
 
 from telethon import Button
 from bson.objectid import ObjectId
-from persian_calendar import Gregorian
+import auth
 
 
 def get_start_admin_buttons(msg, config):
@@ -92,7 +92,10 @@ def list_tasks(db, msg, text=None, page=1, nav=None,
         if employee:
             # employee = db.find('employee', {'_id': employee}).next()
             # q['$or'] = [{'operators': {'id': ObjectId(employee)}}, {'creator': employee.get('telegram_id')}]
-            q['operators.status'] = status
+            if status == 'po':
+                q['status'] = status
+            else:
+                q['operators.status'] = status
             list_prefix += ':' + status
             q['operators.id'] = ObjectId(employee)
             list_prefix += ':' + str(employee)
@@ -179,7 +182,13 @@ def manage_employee(db, msg, employee_id):
         employee_number = '+98----------'
     else:
         employee_number = employee.get('number')
-    text = f"{employee.get('name')}\n{employee_number}"
+    if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
+        employee_status = msg.get('verified')
+    else:
+        employee_status = msg.get('not_verified')
+    text = f"{msg.get('employee_name')}: {employee.get('name')}\n\n" \
+           f"{msg.get('number')}: {employee_number}\n\n" \
+           f"{msg.get('status')}: {employee_status}"
     keyboard = [
         [Button.inline(msg.get('admin_employees_keyboard_edit_employee'),
                        str.encode('admin_edit_employee:' + str(employee_id))),
@@ -200,15 +209,25 @@ def manage_task(db, msg, task_id, employee_id=None):
     is_new = True
     for op in task.get('operators'):
         employee = db.find('employee', {'_id': op.get('id')}).next()
-        operators += employee.get('name') + '\n'
+        operators += '🔹 ' + employee.get('name')
+        if task.get('status') == 'po':
+            operators += ' - ' + msg.get('po')
+        else:
+            operators += ' - ' + msg.get(op.get('status'))
+        if op.get('status') == 'wfp':
+            operators += ' - ' + op.get('comment') + ' - ' + \
+                         msg.get('payment_offer') + ': ' + str(op.get('charge'))
+        operators += '\n'
         if op.get('status') != 'new':
             is_new = False
         if employee_id == op.get('id'):
             employee_task_status = op.get('status')
-    start_date_persian = Gregorian(task.get('start_date').date()).persian_string()
-    deadline_persian = Gregorian(task.get('deadline').date()).persian_string()
-    text = f"{task.get('title')}\n{task.get('description')}\n" \
-           f"{start_date_persian}\n{deadline_persian}\n\n" \
+    start_date_persian = auth.gregorian_date_to_persian_str(task.get('start_date'))
+    deadline_persian = auth.gregorian_date_to_persian_str(task.get('deadline'))
+    text = f"{msg.get('title')}: {task.get('title')}\n\n" \
+           f"{msg.get('description')}: {task.get('description')}\n\n" \
+           f"{msg.get('start_date')}: {start_date_persian}\n" \
+           f"{msg.get('deadline')}: {deadline_persian}\n\n" \
            f"{msg.get('operators')}:\n{operators}"
     if not employee_id:
         keyboard = [[Button.inline(msg.get('admin_tasks_keyboard_edit_task'),

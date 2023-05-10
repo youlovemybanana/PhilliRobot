@@ -5,8 +5,8 @@ from mongo import Mongo
 import polib
 import helper
 from bson.objectid import ObjectId
-from persian_calendar import Persian
 import auth
+import reporting
 
 # Environment detection
 if env == 'live':
@@ -38,19 +38,21 @@ else:
 @bot.on(events.NewMessage(pattern='/start', incoming=True))
 @bot.on(events.CallbackQuery(data=b'main_menu'))
 async def start(event):
-    f1 = f"{msg.get('start_welcome')}! {msg.get('start_id')}: {event.sender_id}"
     if event.sender_id in config.admin_list:
+        welcome_msg = reporting.welcome_admin(db, msg, config)
         k_admin = helper.get_start_admin_buttons(msg, config)
-        await event.respond(f1, buttons=k_admin)
+        await event.respond(welcome_msg, buttons=k_admin)
     else:
         k_user = []
+        welcome_msg = f"{msg.get('start_welcome')}! {msg.get('start_id')}: {event.sender_id}"
         if config.module_employee:
             employee = list(db.find('employee', {'telegram_id': event.sender_id}))
             if len(employee) > 0:
+                welcome_msg = reporting.welcome_employee(msg, config, employee[0])
                 k_user = helper.get_start_user_buttons(msg, config, employee[0].get('_id'))
             else:
                 k_user = helper.get_start_user_buttons(msg, config)
-        await event.respond(f1, buttons=k_user)
+        await event.respond(welcome_msg, buttons=k_user)
     raise events.StopPropagation
 
 if config.module_employee:
@@ -214,11 +216,10 @@ if config.module_task:
             description = response_description.text
             await conv.send_message(msg.get('enter_task_start_date'))
             response_start_date = await conv.get_response()
-            # TODO check date exceptions
-            start_date = Persian(response_start_date.text).gregorian_datetime()
+            start_date = auth.persian_str_to_gregorian_date(response_start_date.text)
             await conv.send_message(msg.get('enter_task_deadline'))
             response_deadline = await conv.get_response()
-            deadline = Persian(response_deadline.text).gregorian_datetime()
+            deadline = auth.persian_str_to_gregorian_date(response_deadline.text)
             task = {
                 'title': title,
                 'description': description,
@@ -304,12 +305,11 @@ if config.module_task:
             await conv.send_message(f"{msg.get('enter_task_start_date')}.\n{msg.get('ignore_entry')}")
             response_start_date = await conv.get_response()
             if response_start_date.text != '.':
-                # TODO check date exceptions
-                task['start_date'] = Persian(response_start_date.text).gregorian_datetime()
+                task['start_date'] = auth.persian_str_to_gregorian_date(response_start_date.text)
             await conv.send_message(f"{msg.get('enter_task_deadline')}.\n{msg.get('ignore_entry')}")
             response_deadline = await conv.get_response()
             if response_deadline.text != '.':
-                task['deadline'] = Persian(response_deadline.text).gregorian_datetime()
+                task['deadline'] = auth.persian_str_to_gregorian_date(response_deadline.text)
             if len(task) > 0:
                 db.update('task', {'_id': ObjectId(task_id)}, {'$set': task})
             page = 1
@@ -383,12 +383,11 @@ if config.module_task:
                 await conv.send_message(f"{msg.get('enter_task_start_date')}.\n{msg.get('ignore_entry')}")
                 response_start_date = await conv.get_response()
                 if response_start_date.text != '.':
-                    # TODO check date exceptions
-                    task['start_date'] = Persian(response_start_date.text).gregorian_datetime()
+                    task['start_date'] = auth.persian_str_to_gregorian_date(response_start_date.text)
                 await conv.send_message(f"{msg.get('enter_task_deadline')}.\n{msg.get('ignore_entry')}")
                 response_deadline = await conv.get_response()
                 if response_deadline.text != '.':
-                    task['deadline'] = Persian(response_deadline.text).gregorian_datetime()
+                    task['deadline'] = auth.persian_str_to_gregorian_date(response_deadline.text)
                 if len(task) > 0:
                     db.update('task', {'_id': ObjectId(task_id)}, {'$set': task})
                 await conv.send_message(msg.get('task_saved'), buttons=helper.get_main_menu_button(msg))

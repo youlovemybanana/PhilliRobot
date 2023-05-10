@@ -145,5 +145,68 @@ msgstr "تغییر وضعیت به تسویه حساب شده"
 msgid "you_can_only_edit_new_tasks"
 msgstr "فقط فعالیت های جدید توسط شما قابل ویرایش هستند"
 
+msgid "today"
+msgstr "امروز"
+
+msgid "admin"
+msgstr "مدیر سیستم"
+
+msgid "verified_employees"
+msgstr "کارمندان محرز شده"
+
+msgid "count_new_task"
+msgstr "تعداد فعالیت های جدید"
+
+msgid "count_ip_task"
+msgstr "تعداد فعالیت های در حال انجام"
+
+msgid "count_wfp_task"
+msgstr "تعداد فعالیت های در انتظار تسویه حساب"
+
+msgid "count_po_task"
+msgstr "تعداد فعالیت های تسویه حساب شده"
+
+msgid "start_date"
+msgstr "تاریخ شروع"
+
+msgid "deadline"
+msgstr "تاریخ پایان"
+
+msgid "title"
+msgstr "عنوان"
+
+msgid "description"
+msgstr "توضیحات"
+
+msgid "employee_name"
+msgstr "نام کارمند"
+
+msgid "number"
+msgstr "شماره"
+
+msgid "status"
+msgstr "وضعیت"
+
+msgid "verified"
+msgstr "محرز شده"
+
+msgid "not_verified"
+msgstr "در انتظار احراز هویت"
+
+msgid "new"
+msgstr "جدید"
+
+msgid "ip"
+msgstr "در حال انجام"
+
+msgid "wfp"
+msgstr "در انتظار تسویه حساب"
+
+msgid "po"
+msgstr "تسویه حساب شده"
+
+msgid "payment_offer"
+msgstr "مبلغ پیشنهادی"
+
 msgid ""
 msgstr ""

@@ -22,3 +22,4 @@ language = 'fa'
 # module
 module_employee = True
 module_task = True  # depends on employee
+module_reminder = True  # depends on task
