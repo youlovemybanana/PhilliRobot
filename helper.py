@@ -35,7 +35,10 @@ def get_start_user_buttons(msg, config, employee_id=None):
                                          str.encode('list_tasks:wfp:' + str(employee_id) + ':1'))])
             k_user.append([Button.inline(msg.get('paid_off_tasks'),
                                          str.encode('list_tasks:po:' + str(employee_id) + ':1'))])
-    return k_user
+    if len(k_user) == 0:
+        return None
+    else:
+        return k_user
 
 
 def get_main_menu_button(msg):
