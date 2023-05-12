@@ -24,6 +24,8 @@ def phone_number(n: str):  # TODO make sure no phone duplicates exist
         return '+98' + n
     elif n.startswith('+98') and len(n) == 13:
         return n
+    elif n.startswith('+98') and len(n) == 16:
+        return n.replace(' ', '')
     else:
         return 0
 

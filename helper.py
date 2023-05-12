@@ -43,7 +43,7 @@ def get_main_menu_button(msg):
 
 
 def get_clear_button():
-    return [Button.clear()]
+    return Button.clear()
 
 
 def navigate(msg, current_page=1, total_pages=1, data_prefix=None, delimiter=':',
