@@ -104,7 +104,7 @@ msgid "task_unassigned"
 msgstr "در فعالیت از شما سلب مسئولیت شد"
 
 msgid "operators"
-msgstr "مسئولان"
+msgstr "مسئولین"
 
 msgid "new_tasks"
 msgstr "لیست فعالیت های جدید"

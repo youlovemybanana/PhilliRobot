@@ -260,7 +260,7 @@ if config.module_task:
                         employee = db.find('employee', {'_id': ObjectId(employee_id)}).next()
                         if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
                             await bot.send_message(int(employee.get('telegram_id')),
-                                                   msg.get('task_unassigned'))
+                                                   msg.get('task_unassigned') + ': ' + title)
                         checked_list.remove(ObjectId(employee_id))
                     else:
                         operator = {
@@ -274,7 +274,7 @@ if config.module_task:
                         employee = db.find('employee', {'_id': ObjectId(employee_id)}).next()
                         if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
                             await bot.send_message(int(employee.get('telegram_id')),
-                                                   msg.get('task_assigned'))
+                                                   msg.get('task_assigned') + ': ' + title)
                         checked_list.append(ObjectId(employee_id))
                 elif selection.data.decode().startswith('page_employee'):
                     page = selection.data.decode().split(':')[1]
@@ -333,7 +333,7 @@ if config.module_task:
                         employee = db.find('employee', {'_id': ObjectId(employee_id)}).next()
                         if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
                             await bot.send_message(int(employee.get('telegram_id')),
-                                                   msg.get('task_unassigned'))
+                                                   msg.get('task_unassigned') + ': ' + response_title.text)
                         checked_list.remove(ObjectId(employee_id))
                     else:
                         operator = {
@@ -347,7 +347,7 @@ if config.module_task:
                         employee = db.find('employee', {'_id': ObjectId(employee_id)}).next()
                         if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
                             await bot.send_message(int(employee.get('telegram_id')),
-                                                   msg.get('task_assigned'))
+                                                   msg.get('task_assigned') + ': ' + response_title.text)
                         checked_list.append(ObjectId(employee_id))
                 elif selection.data.decode().startswith('page_employee'):
                     page = selection.data.decode().split(':')[1]
