@@ -457,7 +457,10 @@ if config.module_task:
                     op['comment'] = response_comment.text
                     await conv.send_message(msg.get('enter_task_payment_offer'))
                     response_payment_offer = await conv.get_response()
-                    op['charge'] = int(response_payment_offer.text)
+                    try:
+                        op['charge'] = int(response_payment_offer.text)
+                    except:
+                        op['charge'] = 0
                     db.update('task', {'_id': ObjectId(task_id)},
                               {'$set': {'operators': operators}})
                     await conv.send_message(msg.get('task_marked_waiting_for_payment'),
