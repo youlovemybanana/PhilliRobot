@@ -3,9 +3,48 @@ from persian_calendar import Persian, Gregorian
 from datetime import datetime
 
 
+def standardize_input(i: str):
+    i = i.strip()
+    i = i.replace('۰', '0')
+    i = i.replace('۱', '1')
+    i = i.replace('۲', '2')
+    i = i.replace('۳', '3')
+    i = i.replace('۴', '4')
+    i = i.replace('۵', '5')
+    i = i.replace('۶', '6')
+    i = i.replace('۷', '7')
+    i = i.replace('۸', '8')
+    i = i.replace('۹', '9')
+    i = i.replace('٠', '0')
+    i = i.replace('١', '1')
+    i = i.replace('٢', '2')
+    i = i.replace('٣', '3')
+    i = i.replace('٤', '4')
+    i = i.replace('٥', '5')
+    i = i.replace('٦', '6')
+    i = i.replace('٧', '7')
+    i = i.replace('٨', '8')
+    i = i.replace('٩', '9')
+    return i
+
+
 def persian_str_to_gregorian_date(d: str):
     try:
-        return Persian(d).gregorian_datetime()
+        d = standardize_input(d)
+        if '/' in d:
+            t = d.split('/')
+        elif '\\' in d:
+            t = d.split('\\')
+        elif '-' in d:
+            t = d.split('-')
+        else:
+            return None
+        year = int(t[0])
+        month = int(t[1])
+        day = int(t[2])
+        if day > year:
+            day, year = year, day
+        return Persian(year, month, day).gregorian_datetime()
     except:
         return None
 

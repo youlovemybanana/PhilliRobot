@@ -425,7 +425,7 @@ if config.module_task:
         employee = db.find('employee', {'telegram_id': event.sender_id}).next()
         task = db.find('task', {'_id': ObjectId(task_id)}).next()
         operators = task.get('operators')
-        is_any_new_left = False
+        # is_any_new_left = False
         for op in operators:
             if employee.get('_id') == op.get('id') and op.get('status') == 'new':
                 op['status'] = 'ip'
@@ -433,9 +433,10 @@ if config.module_task:
                           {'$set': {'operators': operators}})
                 await bot.send_message(event.sender_id, msg.get('task_marked_in_progress'),
                                        buttons=helper.get_main_menu_button(msg))
-            if op.get('status') == 'new':
-                is_any_new_left = True
-        if not is_any_new_left and not task.get('status') == 'wfp' and not task.get('status') == 'po':
+            # if op.get('status') == 'new':
+            #     is_any_new_left = True
+            # (not is_any_new_left and)
+        if not task.get('status') == 'wfp' and not task.get('status') == 'po':
             db.update('task', {'_id': ObjectId(task_id)},
                       {'$set': {'status': 'ip'}})
         raise events.StopPropagation
@@ -458,7 +459,7 @@ if config.module_task:
                     await conv.send_message(msg.get('enter_task_payment_offer'))
                     response_payment_offer = await conv.get_response()
                     try:
-                        op['charge'] = int(response_payment_offer.text)
+                        op['charge'] = int(auth.standardize_input(response_payment_offer.text))
                     except:
                         op['charge'] = 0
                     db.update('task', {'_id': ObjectId(task_id)},

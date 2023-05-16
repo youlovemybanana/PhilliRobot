@@ -97,11 +97,13 @@ def list_tasks(db, msg, text=None, page=1, nav=None,
             # q['$or'] = [{'operators': {'id': ObjectId(employee)}}, {'creator': employee.get('telegram_id')}]
             if status == 'po':
                 q['status'] = status
+                list_prefix += ':' + status
+                q['operators.id'] = ObjectId(employee)
+                list_prefix += ':' + str(employee)
             else:
-                q['operators.status'] = status
-            list_prefix += ':' + status
-            q['operators.id'] = ObjectId(employee)
-            list_prefix += ':' + str(employee)
+                q['operators'] = {"$elemMatch": {"status": status, "id": ObjectId(employee)}}
+                list_prefix += ':' + status
+                list_prefix += ':' + str(employee)
         else:
             q['status'] = status
             list_prefix += ':' + status
@@ -212,12 +214,8 @@ def manage_task(db, msg, task_id, employee_id=None):
     is_new = True
     for op in task.get('operators'):
         employee = db.find('employee', {'_id': op.get('id')}).next()
-        operators += '🔹 ' + employee.get('name')
-        if task.get('status') == 'po':
-            operators += ' - ' + msg.get('po')
-        else:
-            operators += ' - ' + msg.get(op.get('status'))
-        if op.get('status') == 'wfp':
+        operators += '🔹 ' + employee.get('name') + ' - ' + msg.get(op.get('status'))
+        if op.get('status') == 'wfp' and (employee_id == op.get('id') or not employee_id):
             operators += ' - ' + op.get('comment') + ' - ' + \
                          msg.get('payment_offer') + ': ' + str(op.get('charge'))
         operators += '\n'
