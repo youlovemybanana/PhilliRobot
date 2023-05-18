@@ -134,7 +134,7 @@ if config.module_employee:
         await event.respond(text, buttons=buttons)
         raise events.StopPropagation
 
-    @bot.on(events.NewMessage(incoming=True, forwards=False, func=lambda e: e.message.media and e.message.reply_to))
+    @bot.on(events.NewMessage(incoming=True, forwards=False, func=lambda e: e.message.media))
     async def check_phone_number(event):
         if type(event.message.peer_id) == PeerUser:
             if event.message.media.phone_number and event.message.media.user_id:
