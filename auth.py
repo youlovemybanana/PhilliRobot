@@ -57,6 +57,7 @@ def gregorian_date_to_persian_str(d: datetime):
 
 
 def phone_number(n: str):  # TODO make sure no phone duplicates exist
+    n = standardize_input(n)
     if n.isdecimal() and n.startswith('0') and len(n) == 11:
         return '+98' + n[1:]
     elif n.isdecimal() and n.startswith('9') and len(n) == 10:

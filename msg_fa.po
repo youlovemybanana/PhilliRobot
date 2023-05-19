@@ -5,31 +5,31 @@ msgid "start_id"
 msgstr "آیدی عددی شما"
 
 msgid "start_keyboard_admin_employees"
-msgstr "مدیریت کارمندان"
+msgstr "مدیریت همکاران"
 
 msgid "start_keyboard_admin_tasks"
 msgstr "مدیریت فعالیت ها"
 
 msgid "admin_employees_keyboard_add_employee"
-msgstr "افزودن کارمند جدید"
+msgstr "افزودن همکار جدید"
 
 msgid "admin_employees_keyboard_edit_employee"
-msgstr "ویرایش کارمند"
+msgstr "ویرایش همکار"
 
 msgid "admin_employees_keyboard_delete_employee"
-msgstr "حذف کارمند"
+msgstr "حذف همکار"
 
 msgid "enter_employee_name"
-msgstr "نام کارمند را وارد کنید"
+msgstr "نام همکار را وارد کنید"
 
 msgid "enter_employee_number"
-msgstr "شماره ی کارمند را وارد کنید"
+msgstr "شماره ی همکار را وارد کنید"
 
 msgid "employee_saved"
-msgstr "کارمند ذخیره شد"
+msgstr "همکار ذخیره شد"
 
 msgid "employee_deleted"
-msgstr "کارمند حذف شد"
+msgstr "همکار حذف شد"
 
 msgid "task_deleted"
 msgstr "فعالیت حذف شد"
@@ -56,7 +56,7 @@ msgid "main_menu"
 msgstr "منوی اصلی"
 
 msgid "select_employee"
-msgstr "کارمندی را انتخاب کنید"
+msgstr "همکاری را انتخاب کنید"
 
 msgid "select_task"
 msgstr "فعالیتی را انتخاب کنید"
@@ -152,7 +152,7 @@ msgid "admin"
 msgstr "مدیر سیستم"
 
 msgid "verified_employees"
-msgstr "کارمندان محرز شده"
+msgstr "همکاران محرز شده"
 
 msgid "count_new_task"
 msgstr "تعداد فعالیت های جدید"
@@ -179,7 +179,7 @@ msgid "description"
 msgstr "توضیحات"
 
 msgid "employee_name"
-msgstr "نام کارمند"
+msgstr "نام همکار"
 
 msgid "number"
 msgstr "شماره"
