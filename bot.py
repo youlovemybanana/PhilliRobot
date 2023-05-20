@@ -140,7 +140,10 @@ if config.module_employee:
         if type(event.message.peer_id) == PeerUser:
             if event.message.media.phone_number and event.message.media.user_id:
                 if event.message.peer_id.user_id == event.message.media.user_id:
-                    res = db.update('employee', {'number': event.message.media.phone_number},
+                    phone_number = event.message.media.phone_number
+                    if not phone_number.startswith('+'):
+                        phone_number = '+' + phone_number
+                    res = db.update('employee', {'number': phone_number},
                                     {'$set': {'telegram_id': event.message.media.user_id}})
                     if res.matched_count > 0:
                         await event.respond(msg.get('account_auth_successful'),
