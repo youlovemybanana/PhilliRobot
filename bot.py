@@ -136,6 +136,7 @@ if config.module_employee:
 
     @bot.on(events.NewMessage(incoming=True, forwards=False, func=lambda e: e.message.media))
     async def check_phone_number(event):
+        print(event.message)
         if type(event.message.peer_id) == PeerUser:
             if event.message.media.phone_number and event.message.media.user_id:
                 if event.message.peer_id.user_id == event.message.media.user_id:
