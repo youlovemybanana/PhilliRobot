@@ -49,4 +49,5 @@ def report_today(db, msg, config):
                         f"{msg.get('tasks_today')}:\n\n"
         for task in tasks:
             task_reminder += f"🔸 {task.get('title')}\n\n"
+        return task_reminder
 

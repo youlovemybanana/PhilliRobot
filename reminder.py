@@ -1,4 +1,5 @@
 from telethon import TelegramClient, sync
+from telethon.tl.types import PeerChat, PeerChannel
 from env import env
 from mongo import Mongo
 import polib
@@ -31,7 +32,17 @@ if config.proxy:
 else:
     bot = TelegramClient(session=config.session_name, api_id=config.api_id, api_hash=config.api_hash)
 
+bot.start(bot_token=config.bot_token)
+
 if config.module_reminder:
     for g in config.reminder_groups:
-        bot.send_message(g, reporting.report_today(db, msg, config))
-        print(g)
+        try:
+            bot.send_message(PeerChat(g), reporting.report_today(db, msg, config))
+        except:
+            print(g)
+        try:
+            bot.send_message(PeerChannel(g), reporting.report_today(db, msg, config))
+        except:
+            print(g)
+
+bot.disconnect()
