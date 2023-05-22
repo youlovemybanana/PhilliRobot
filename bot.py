@@ -39,10 +39,6 @@ else:
 @bot.on(events.NewMessage(pattern='/start', incoming=True))
 @bot.on(events.CallbackQuery(data=b'main_menu'))
 async def start(event):
-    try:
-        print(event.message)
-    except:
-        pass
     if event.sender_id in config.admin_list:
         welcome_msg = reporting.welcome_admin(db, msg, config)
         k_admin = helper.get_start_admin_buttons(msg, config)

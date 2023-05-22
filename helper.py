@@ -102,6 +102,7 @@ def list_tasks(db, msg, text=None, page=1, nav=None,
                 list_prefix += ':' + str(employee)
             else:
                 q['operators'] = {"$elemMatch": {"status": status, "id": ObjectId(employee)}}
+                q['status'] = {"$ne": "po"}
                 list_prefix += ':' + status
                 list_prefix += ':' + str(employee)
         else:
