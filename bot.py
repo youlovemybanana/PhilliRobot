@@ -39,6 +39,7 @@ else:
 @bot.on(events.NewMessage(pattern='/start', incoming=True))
 @bot.on(events.CallbackQuery(data=b'main_menu'))
 async def start(event):
+    print(event.sender_id)
     if event.sender_id in config.admin_list:
         welcome_msg = reporting.welcome_admin(db, msg, config)
         k_admin = helper.get_start_admin_buttons(msg, config)
@@ -136,7 +137,6 @@ if config.module_employee:
 
     @bot.on(events.NewMessage(incoming=True, forwards=False, func=lambda e: e.message.media))
     async def check_phone_number(event):
-        print(event.message)
         if type(event.message.peer_id) == PeerUser:
             if event.message.media.phone_number and event.message.media.user_id:
                 if event.message.peer_id.user_id == event.message.media.user_id:
