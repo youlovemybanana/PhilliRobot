@@ -264,7 +264,14 @@ if config.module_task:
                         employee = db.find('employee', {'_id': ObjectId(employee_id)}).next()
                         if employee.get('telegram_id') and int(employee.get('telegram_id')) > 0:
                             await bot.send_message(int(employee.get('telegram_id')),
-                                                   msg.get('task_unassigned') + ': ' + title)
+                                                   msg.get('task_unassigned') + '.\n\n' +
+                                                   msg.get('title') + ': ' + title + '\n\n' +
+                                                   msg.get('description') + ': ' + description + '\n\n' +
+                                                   msg.get('start_date') + ': ' +
+                                                   auth.gregorian_date_to_persian_str(start_date) +
+                                                   '\n\n' + msg.get('deadline') + ': ' +
+                                                   auth.gregorian_date_to_persian_str(deadline),
+                                                   buttons=helper.get_main_menu_button(msg))
                         checked_list.remove(ObjectId(employee_id))
                     else:
                         operator = {
