@@ -46,8 +46,12 @@ def report_today(db, msg, config):
         today_date = datetime.today().replace(minute=0, hour=0, second=0, microsecond=0)
         tasks = db.find('task', {'start_date': today_date})
         task_reminder = f"{today(msg)}\n\n" \
-                        f"{msg.get('tasks_today')}:\n\n"
+                        f"{msg.get('new_tasks_today')}:\n\n"
         for task in tasks:
             task_reminder += f"🔸 {task.get('title')}\n\n"
+        tasks = db.find('task', {'status': 'ip'})
+        task_reminder += f"{msg.get('ip_tasks_today')}:\n\n"
+        for task in tasks:
+            task_reminder += f"🔹 {task.get('title')}\n\n"
         return task_reminder
 

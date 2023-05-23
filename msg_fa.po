@@ -208,8 +208,11 @@ msgstr "تسویه حساب شده"
 msgid "payment_offer"
 msgstr "مبلغ پیشنهادی"
 
-msgid "tasks_today"
-msgstr "فعالیت های امروز"
+msgid "new_tasks_today"
+msgstr "فعالیت های جدید امروز"
+
+msgid "ip_tasks_today"
+msgstr "فعالیت های در حال انجام"
 
 msgid ""
 msgstr ""
