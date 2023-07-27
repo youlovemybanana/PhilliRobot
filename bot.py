@@ -82,7 +82,7 @@ if config.module_employee:
                 'groups': []
             }
             insert_result = db.insert('employee', employee)
-            text, buttons = helper.manage_employee(db, msg, employee_id=ObjectId(insert_result.inserted_id))
+            text, buttons = helper.manage_employee(config, db, msg, employee_id=ObjectId(insert_result.inserted_id))
             await event.respond(msg.get('employee_saved') + ':\n\n' + text, buttons=buttons)
         raise events.StopPropagation
 
@@ -104,7 +104,7 @@ if config.module_employee:
                 new_number = auth.phone_number(response_number.text)
                 db.update('employee', {'_id': ObjectId(employee_id)},
                           {'$set': {'number': new_number, 'telegram_id': 0}})
-        text, buttons = helper.manage_employee(db, msg, employee_id=employee_id)
+        text, buttons = helper.manage_employee(config, db, msg, employee_id=employee_id)
         await event.respond(msg.get('employee_saved') + ':\n\n' + text, buttons=buttons)
         raise events.StopPropagation
 
@@ -130,7 +130,7 @@ if config.module_employee:
     @auth.event_access(db, config, admin_only=True)
     async def manage_employee(event):
         employee_id = event.data.decode().split(':')[1]
-        text, buttons = helper.manage_employee(db, msg, employee_id=employee_id)
+        text, buttons = helper.manage_employee(config, db, msg, employee_id=employee_id)
         await event.respond(text, buttons=buttons)
         raise events.StopPropagation
 

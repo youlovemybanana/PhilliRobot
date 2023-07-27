@@ -181,7 +181,7 @@ def list_employees(db, msg, text=None, page=1, checked=None,
     return text, buttons
 
 
-def manage_employee(db, msg, employee_id):
+def manage_employee(config, db, msg, employee_id):
     employees = db.find('employee', {'_id': ObjectId(employee_id)})
     employee = employees.next()
     if int(employee.get('number')) == 0:
@@ -201,9 +201,18 @@ def manage_employee(db, msg, employee_id):
          Button.inline(msg.get('admin_employees_keyboard_delete_employee'),
                        str.encode('admin_delete_employee:' + str(employee_id)))],
         [Button.inline(msg.get('start_keyboard_admin_employees'), b'admin_employees'),
-         Button.inline(msg.get('admin_employees_keyboard_add_employee'), b'admin_add_employee')],
-        [Button.inline(msg.get('main_menu'), b'main_menu')]
+         Button.inline(msg.get('admin_employees_keyboard_add_employee'), b'admin_add_employee')]
     ]
+    if config.module_task:
+        keyboard.append([Button.inline(msg.get('new_tasks'),
+                                       str.encode('list_tasks:new:' + str(employee_id) + ':1')),
+                         Button.inline(msg.get('in_progress_tasks'),
+                                       str.encode('list_tasks:ip:' + str(employee_id) + ':1'))])
+        keyboard.append([Button.inline(msg.get('waiting_for_payment_tasks'),
+                                       str.encode('list_tasks:wfp:' + str(employee_id) + ':1')),
+                         Button.inline(msg.get('paid_off_tasks'),
+                                       str.encode('list_tasks:po:' + str(employee_id) + ':1'))])
+    keyboard.append([Button.inline(msg.get('main_menu'), b'main_menu')])
     return text, keyboard
 
 
