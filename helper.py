@@ -205,12 +205,12 @@ def manage_employee(config, db, msg, employee_id):
     ]
     if config.module_task:
         keyboard.append([Button.inline(msg.get('new_tasks'),
-                                       str.encode('list_tasks:new:' + str(employee_id) + ':1')),
-                         Button.inline(msg.get('in_progress_tasks'),
+                                       str.encode('list_tasks:new:' + str(employee_id) + ':1'))])
+        keyboard.append([Button.inline(msg.get('in_progress_tasks'),
                                        str.encode('list_tasks:ip:' + str(employee_id) + ':1'))])
         keyboard.append([Button.inline(msg.get('waiting_for_payment_tasks'),
-                                       str.encode('list_tasks:wfp:' + str(employee_id) + ':1')),
-                         Button.inline(msg.get('paid_off_tasks'),
+                                       str.encode('list_tasks:wfp:' + str(employee_id) + ':1'))])
+        keyboard.append([Button.inline(msg.get('paid_off_tasks'),
                                        str.encode('list_tasks:po:' + str(employee_id) + ':1'))])
     keyboard.append([Button.inline(msg.get('main_menu'), b'main_menu')])
     return text, keyboard

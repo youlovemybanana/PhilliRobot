@@ -182,7 +182,7 @@ if config.module_task:
                 employee = db.find('employee', {'telegram_id': event.sender_id}).next()
                 if employee.get('_id') != ObjectId(employee_id):
                     return
-            prefix = 'manage_task'
+                prefix = 'manage_task'
         else:
             return
         text, buttons = helper.list_tasks(db, msg, page=page, prefix=prefix,
